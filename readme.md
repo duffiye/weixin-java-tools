@@ -58,3 +58,5 @@
   - 微信开放平台：`weixin-java-open`   
   - 公众号：`weixin-java-mp`    
   - 企业号/企业微信：`weixin-java-cp`
+  - 停车场无感支付: `weixin-java-parking`
+  - 普通服务商(service-provider): `weixin-java-sp`
