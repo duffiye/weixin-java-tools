@@ -100,6 +100,7 @@
     <module>weixin-java-pay</module>
     <module>weixin-java-miniapp</module>
     <module>weixin-java-open</module>
+    <module>weixin-java-parking</module>
     <!--module>weixin-java-osgi</module-->
   </modules>
 
