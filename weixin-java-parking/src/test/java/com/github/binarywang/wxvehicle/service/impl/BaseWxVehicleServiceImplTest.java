@@ -1,7 +1,9 @@
 package com.github.binarywang.wxvehicle.service.impl;
 
 import com.github.binarywang.wxvehicle.bean.request.WxVehicleNotificationRequest;
+import com.github.binarywang.wxvehicle.bean.request.WxVehiclePayapplyRequest;
 import com.github.binarywang.wxvehicle.bean.result.WxVehicleNotificationResult;
+import com.github.binarywang.wxvehicle.bean.result.WxVehiclePayapplyResult;
 import com.github.binarywang.wxvehicle.constant.WxVehicleConstants.SignType;
 import com.github.binarywang.wxvehicle.exception.WxVehicleException;
 import com.github.binarywang.wxvehicle.service.WxVehicleService;
@@ -38,6 +40,20 @@ public class BaseWxVehicleServiceImplTest {
     this.logger.info(result.toString());
     this.logger.warn(this.wxVehicleService.getWxApiData().toString());
   }
+
+  @Test
+  public void testWxVehiclePayapply() throws WxVehicleException {
+    WxVehiclePayapplyRequest request = WxVehiclePayapplyRequest.newBuilder()
+      .sceneInfo("{\"scene_info\":{\"start_time\":\"20170926114339\",\"plate_number\":\"CB1000sdfasd\",\"car _type\":\"大型车\",\"parking_name\":\"欢乐海岸停车场\",\"free_time\":\"1200\"}}")
+      .tradeScene("PARKING")
+      .build();
+    request.setSignType(SignType.HMAC_SHA256);
+    WxVehiclePayapplyResult result = this.wxVehicleService.payapply(request);
+    this.logger.info(result.toString());
+    this.logger.warn(this.wxVehicleService.getWxApiData().toString());
+  }
+
+
 
 
   @Test

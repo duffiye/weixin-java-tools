@@ -2,8 +2,10 @@ package com.github.binarywang.wxvehicle.service.impl;
 
 import com.github.binarywang.wxvehicle.bean.WxVehicleApiData;
 import com.github.binarywang.wxvehicle.bean.request.WxVehicleNotificationRequest;
+import com.github.binarywang.wxvehicle.bean.request.WxVehiclePayapplyRequest;
 import com.github.binarywang.wxvehicle.bean.result.BaseWxVehicleResult;
 import com.github.binarywang.wxvehicle.bean.request.WxVehicleDefaultRequest;
+import com.github.binarywang.wxvehicle.bean.result.WxVehiclePayapplyResult;
 import com.github.binarywang.wxvehicle.bean.result.WxVehicleSandboxSignKeyResult;
 import com.github.binarywang.wxvehicle.bean.result.WxVehicleNotificationResult;
 import com.github.binarywang.wxvehicle.config.WxVehicleConfig;
@@ -85,5 +87,14 @@ public abstract class BaseWxVehicleServiceImpl implements WxVehicleService {
     WxVehicleNotificationResult wxVehicleNotificationResult = BaseWxVehicleResult.fromXML(responseContent, WxVehicleNotificationResult.class);
     wxVehicleNotificationResult.checkResult(this, wxVehicleNotificationRequest.getSignType(), true);
     return wxVehicleNotificationResult;
+  }
+
+  @Override
+  public WxVehiclePayapplyResult payapply(WxVehiclePayapplyRequest wxVehiclePayapplyRequest) throws WxVehicleException {
+    wxVehiclePayapplyRequest.checkAndSign(this.getConfig());
+    String url = this.getVehicleBaseUrl() + "/vehicle/pay/payapply";
+    String responseContent = this.post(url, wxVehiclePayapplyRequest.toXML(), true);
+    WxVehiclePayapplyResult wxVehiclePayapplyResult = BaseWxVehicleResult.fromXML(responseContent, WxVehiclePayapplyResult.class);
+    return wxVehiclePayapplyResult;
   }
 }

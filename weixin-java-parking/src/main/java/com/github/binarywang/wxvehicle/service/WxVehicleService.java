@@ -2,7 +2,9 @@ package com.github.binarywang.wxvehicle.service;
 
 import com.github.binarywang.wxvehicle.bean.WxVehicleApiData;
 import com.github.binarywang.wxvehicle.bean.request.WxVehicleNotificationRequest;
+import com.github.binarywang.wxvehicle.bean.request.WxVehiclePayapplyRequest;
 import com.github.binarywang.wxvehicle.bean.result.WxVehicleNotificationResult;
+import com.github.binarywang.wxvehicle.bean.result.WxVehiclePayapplyResult;
 import com.github.binarywang.wxvehicle.config.WxVehicleConfig;
 import com.github.binarywang.wxvehicle.exception.WxVehicleException;
 
@@ -75,5 +77,13 @@ public interface WxVehicleService {
    * @throws WxVehicleException
    */
   WxVehicleNotificationResult notification(WxVehicleNotificationRequest wxVehicleNotificationRequest) throws WxVehicleException;
+
+  /**
+   * 微信无感停车申请扣款
+   * @param wxVehiclePayapplyRequest
+   * @return
+   * @throws WxVehicleException
+   */
+  WxVehiclePayapplyResult payapply(WxVehiclePayapplyRequest wxVehiclePayapplyRequest) throws WxVehicleException;
 
 }

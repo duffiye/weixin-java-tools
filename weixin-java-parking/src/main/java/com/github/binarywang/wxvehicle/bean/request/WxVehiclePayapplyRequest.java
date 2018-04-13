@@ -32,7 +32,6 @@ public class WxVehiclePayapplyRequest extends BaseWxVehicleRequest {
    * 商品名称明细列表
    * </pre>
    */
-  @Required
   @XStreamAlias("detail")
   private String detail;
 
@@ -43,7 +42,6 @@ public class WxVehiclePayapplyRequest extends BaseWxVehicleRequest {
    * 附加数据，在查询 API 和支 付通知中原样返回，该字段 主要用亍商户携带订单的自 定义数据
    * </pre>
    */
-  @Required
   @XStreamAlias("attach")
   private String attach;
 
@@ -100,7 +98,6 @@ public class WxVehiclePayapplyRequest extends BaseWxVehicleRequest {
    * 金券或立减优惠
    * </pre>
    */
-  @Required
   @XStreamAlias("goods_tag")
   private String goodsTag;
 
@@ -135,7 +132,7 @@ public class WxVehiclePayapplyRequest extends BaseWxVehicleRequest {
    */
   @Required
   @XStreamAlias("trade_scene")
-  private String trade_scene;
+  private String tradeScene;
 
   /**
    * <pre>
@@ -146,7 +143,7 @@ public class WxVehiclePayapplyRequest extends BaseWxVehicleRequest {
    */
   @Required
   @XStreamAlias("scene_info")
-  private String scene_info;
+  private String sceneInfo;
 
   @Override
   protected void checkConstraints() throws WxVehicleException {
