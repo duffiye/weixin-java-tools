@@ -11,7 +11,7 @@ import me.chanjar.weixin.common.annotation.Required;
 @NoArgsConstructor
 @AllArgsConstructor
 @XStreamAlias("xml")
-public class WxVehicleNotificationRequest extends BaseWxPayRequest {
+public class WxVehicleNotificationRequest extends BaseWxVehicleRequest {
 
 
   /**

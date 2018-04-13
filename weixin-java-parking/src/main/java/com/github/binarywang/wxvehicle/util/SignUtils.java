@@ -1,6 +1,6 @@
 package com.github.binarywang.wxvehicle.util;
 
-import com.github.binarywang.wxvehicle.bean.request.BaseWxPayRequest;
+import com.github.binarywang.wxvehicle.bean.request.BaseWxVehicleRequest;
 import com.github.binarywang.wxvehicle.bean.result.BaseWxVehicleResult;
 import com.github.binarywang.wxvehicle.constant.WxVehicleConstants.SignType;
 import com.google.common.collect.Lists;
@@ -145,8 +145,8 @@ public class SignUtils {
     Map<String, String> result = Maps.newHashMap();
     List<Field> fields = new ArrayList<>(Arrays.asList(bean.getClass().getDeclaredFields()));
     fields.addAll(Arrays.asList(bean.getClass().getSuperclass().getDeclaredFields()));
-    if(bean.getClass().getSuperclass().getSuperclass() == BaseWxPayRequest.class){
-      fields.addAll(Arrays.asList(BaseWxPayRequest.class.getDeclaredFields()));
+    if(bean.getClass().getSuperclass().getSuperclass() == BaseWxVehicleRequest.class){
+      fields.addAll(Arrays.asList(BaseWxVehicleRequest.class.getDeclaredFields()));
     }
 
     if(bean.getClass().getSuperclass().getSuperclass() == BaseWxVehicleResult.class){

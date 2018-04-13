@@ -3,7 +3,7 @@ package com.github.binarywang.wxvehicle.service.impl;
 import com.github.binarywang.wxvehicle.bean.WxVehicleApiData;
 import com.github.binarywang.wxvehicle.bean.request.WxVehicleNotificationRequest;
 import com.github.binarywang.wxvehicle.bean.result.BaseWxVehicleResult;
-import com.github.binarywang.wxvehicle.bean.result.WxVehicleDefaultRequest;
+import com.github.binarywang.wxvehicle.bean.request.WxVehicleDefaultRequest;
 import com.github.binarywang.wxvehicle.bean.result.WxVehicleSandboxSignKeyResult;
 import com.github.binarywang.wxvehicle.bean.result.WxVehicleNotificationResult;
 import com.github.binarywang.wxvehicle.config.WxVehicleConfig;

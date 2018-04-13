@@ -26,7 +26,7 @@ import static com.github.binarywang.wxvehicle.constant.WxVehicleConstants.SignTy
  * @author <a href="https://github.com/binarywang">Binary Wang</a>
  */
 @Data
-public abstract class BaseWxPayRequest implements Serializable {
+public abstract class BaseWxVehicleRequest implements Serializable {
   private static final long serialVersionUID = -4766915659779847060L;
 
   /**

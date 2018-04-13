@@ -1,6 +1,6 @@
-package com.github.binarywang.wxvehicle.bean.result;
+package com.github.binarywang.wxvehicle.bean.request;
 
-import com.github.binarywang.wxvehicle.bean.request.BaseWxPayRequest;
+import com.github.binarywang.wxvehicle.bean.request.BaseWxVehicleRequest;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
@@ -12,7 +12,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  * @author <a href="https://github.com/binarywang">Binary Wang</a>
  */
 @XStreamAlias("xml")
-public class WxVehicleDefaultRequest extends BaseWxPayRequest {
+public class WxVehicleDefaultRequest extends BaseWxVehicleRequest {
   @Override
   protected void checkConstraints() {
     //do nothing

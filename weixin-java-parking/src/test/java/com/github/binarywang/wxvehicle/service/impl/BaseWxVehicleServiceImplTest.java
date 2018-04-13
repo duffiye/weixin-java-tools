@@ -27,23 +27,6 @@ public class BaseWxVehicleServiceImplTest {
   private WxVehicleService wxVehicleService;
 
 
-//  @Test
-//  public void testUnifiedOrder() throws WxVehicleException {
-//    WxPayUnifiedOrderRequest request = WxPayUnifiedOrderRequest.newBuilder()
-//      .body("我去")
-//      .totalFee(1)
-//      .spbillCreateIp("11.1.11.1")
-//      .notifyUrl("111111")
-//      .tradeType(TradeType.JSAPI)
-//      .openid(((XmlWxVehicleConfig) this.payService.getConfig()).getOpenid())
-//      .outTradeNo("1111112")
-//      .build();
-//    request.setSignType(SignType.HMAC_SHA256);
-//    WxPayUnifiedOrderResult result = this.payService.unifiedOrder(request);
-//    this.logger.info(result.toString());
-//    this.logger.warn(this.payService.getWxApiData().toString());
-//  }
-
   @Test
   public void testWxVehicleNotification() throws WxVehicleException {
     WxVehicleNotificationRequest request = WxVehicleNotificationRequest.newBuilder()
