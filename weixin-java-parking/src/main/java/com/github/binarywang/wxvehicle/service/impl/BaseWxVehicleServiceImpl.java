@@ -1,16 +1,16 @@
 package com.github.binarywang.wxvehicle.service.impl;
 
 import com.github.binarywang.wxvehicle.bean.WxVehicleApiData;
+import com.github.binarywang.wxvehicle.bean.notify.WxVehicleOrderNotifyResult;
 import com.github.binarywang.wxvehicle.bean.request.WxVehicleNotificationRequest;
 import com.github.binarywang.wxvehicle.bean.request.WxVehiclePayApplyRequest;
-import com.github.binarywang.wxvehicle.bean.result.BaseWxVehicleResult;
+import com.github.binarywang.wxvehicle.bean.request.WxVehicleQueryOrderRequest;
+import com.github.binarywang.wxvehicle.bean.result.*;
 import com.github.binarywang.wxvehicle.bean.request.WxVehicleDefaultRequest;
-import com.github.binarywang.wxvehicle.bean.result.WxVehiclePayapplyResult;
-import com.github.binarywang.wxvehicle.bean.result.WxVehicleSandboxSignKeyResult;
-import com.github.binarywang.wxvehicle.bean.result.WxVehicleNotificationResult;
 import com.github.binarywang.wxvehicle.config.WxVehicleConfig;
 import com.github.binarywang.wxvehicle.exception.WxVehicleException;
 import com.github.binarywang.wxvehicle.service.WxVehicleService;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -96,5 +96,41 @@ public abstract class BaseWxVehicleServiceImpl implements WxVehicleService {
     String responseContent = this.post(url, wxVehiclePayApplyRequest.toXML(), true);
     WxVehiclePayapplyResult wxVehiclePayapplyResult = BaseWxVehicleResult.fromXML(responseContent, WxVehiclePayapplyResult.class);
     return wxVehiclePayapplyResult;
+  }
+
+  @Override
+  public WxVehicleOrderNotifyResult parseOrderNotifyResult(String xmlData) throws WxVehicleException {
+    try {
+      log.debug("微信支付异步通知请求参数：{}", xmlData);
+      WxVehicleOrderNotifyResult result = WxVehicleOrderNotifyResult.fromXML(xmlData);
+      log.debug("微信支付异步通知请求解析后的对象：{}", result);
+      result.checkResult(this, this.getConfig().getSignType(), false);
+      return result;
+    } catch (WxVehicleException e) {
+      log.error(e.getMessage(), e);
+      throw e;
+    } catch (Exception e) {
+      log.error(e.getMessage(), e);
+      throw new WxVehicleException("发生异常，" + e.getMessage(), e);
+    }
+  }
+
+  @Override
+  public WxVehicleQueryOrderResult queryOrder(String transactionId, String outTradeNo) throws WxVehicleException {
+    WxVehicleQueryOrderRequest request = new WxVehicleQueryOrderRequest();
+    request.setOutTradeNo(StringUtils.trimToNull(outTradeNo));
+    request.setTransactionId(StringUtils.trimToNull(transactionId));
+    request.checkAndSign(this.getConfig());
+
+    String url = this.getVehicleBaseUrl() + "/transit/partnerpay/quer yorder";
+    String responseContent = this.post(url, request.toXML(), false);
+    if (StringUtils.isBlank(responseContent)) {
+      throw new WxVehicleException("无响应结果");
+    }
+
+    WxVehicleQueryOrderResult result = BaseWxVehicleResult.fromXML(responseContent, WxVehicleQueryOrderResult.class);
+    result.composeCoupons();
+    result.checkResult(this, request.getSignType(), true);
+    return result;
   }
 }
