@@ -120,9 +120,10 @@ public abstract class BaseWxVehicleServiceImpl implements WxVehicleService {
     WxVehicleQueryOrderRequest request = new WxVehicleQueryOrderRequest();
     request.setOutTradeNo(StringUtils.trimToNull(outTradeNo));
     request.setTransactionId(StringUtils.trimToNull(transactionId));
+    request.setSignType("HMAC-SHA256");
     request.checkAndSign(this.getConfig());
 
-    String url = this.getVehicleBaseUrl() + "/transit/partnerpay/quer yorder";
+    String url = this.getVehicleBaseUrl() + "/transit/partnerpay/queryorder";
     String responseContent = this.post(url, request.toXML(), false);
     if (StringUtils.isBlank(responseContent)) {
       throw new WxVehicleException("无响应结果");

@@ -15,6 +15,8 @@ import org.slf4j.LoggerFactory;
 import org.testng.annotations.Guice;
 import org.testng.annotations.Test;
 
+import java.util.Date;
+
 /**
  * 测试支付相关接口
  * Created by Binary Wang on 2016/7/28.
@@ -45,7 +47,14 @@ public class BaseWxVehicleServiceImplTest {
   @Test
   public void testWxVehiclePayApply() throws WxVehicleException {
     WxVehiclePayApplyRequest request = WxVehiclePayApplyRequest.newBuilder()
-      .sceneInfo("{\"scene_info\":{\"start_time\":\"20170926114339\",\"plate_number\":\"CB1000sdfasd\",\"car _type\":\"大型车\",\"parking_name\":\"欢乐海岸停车场\",\"free_time\":\"1200\"}}")
+      .body("停车费")
+      .outTradeNo("T" + new Date().getTime())
+      .feeType("CNY")
+      .spbillCreateIp("127.0.0.1")
+      .notifyUrl("http://www.baidu.com")
+      .tradeType("PAP")
+      .totalFee("1")
+      .sceneInfo("{\"scene_info\":{\"start_time\":\"20180509114339\",\"plate_number\":\"湘A6L46C\",\"car _type\":\"大型车\",\"parking_name\":\"欢乐海岸停车场\",\"free_time\":\"1200\" ,\"charging_time\":\"3600\",}}")
       .tradeScene("PARKING")
       .build();
     request.setSignType(SignType.HMAC_SHA256);
