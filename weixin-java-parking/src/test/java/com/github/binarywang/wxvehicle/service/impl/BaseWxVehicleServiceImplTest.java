@@ -33,7 +33,7 @@ public class BaseWxVehicleServiceImplTest {
   @Test
   public void testWxVehicleNotification() throws WxVehicleException {
     WxVehicleNotificationRequest request = WxVehicleNotificationRequest.newBuilder()
-      .sceneInfo("{\"scene_info\":{\"start_time\":\"20170926114339\",\"plate_number\":\"CB1000sdfasd\",\"car _type\":\"大型车\",\"parking_name\":\"欢乐海岸停车场\",\"free_time\":\"1200\"}}")
+      .sceneInfo("{\"scene_info\":{\"start_time\":\"20180502094339\",\"plate_number\":\"湘A6L46C\",\"car _type\":\"小型车\",\"parking_name\":\"欢乐海岸停车场\",\"free_time\":\"1200\"}}")
       .tradeScene("PARKING")
       .build();
     request.setSignType(SignType.HMAC_SHA256);

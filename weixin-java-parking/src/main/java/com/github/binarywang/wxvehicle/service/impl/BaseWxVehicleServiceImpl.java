@@ -83,7 +83,7 @@ public abstract class BaseWxVehicleServiceImpl implements WxVehicleService {
 
     String url = this.getVehicleBaseUrl() + "/vehicle/pay/notification";
 
-    String responseContent = this.post(url, wxVehicleNotificationRequest.toXML(), true);
+    String responseContent = this.post(url, wxVehicleNotificationRequest.toXML(), false);
     WxVehicleNotificationResult wxVehicleNotificationResult = BaseWxVehicleResult.fromXML(responseContent, WxVehicleNotificationResult.class);
     wxVehicleNotificationResult.checkResult(this, wxVehicleNotificationRequest.getSignType(), true);
     return wxVehicleNotificationResult;
@@ -93,7 +93,7 @@ public abstract class BaseWxVehicleServiceImpl implements WxVehicleService {
   public WxVehiclePayapplyResult payApply(WxVehiclePayApplyRequest wxVehiclePayApplyRequest) throws WxVehicleException {
     wxVehiclePayApplyRequest.checkAndSign(this.getConfig());
     String url = this.getVehicleBaseUrl() + "/vehicle/pay/payApply";
-    String responseContent = this.post(url, wxVehiclePayApplyRequest.toXML(), true);
+    String responseContent = this.post(url, wxVehiclePayApplyRequest.toXML(), false);
     WxVehiclePayapplyResult wxVehiclePayapplyResult = BaseWxVehicleResult.fromXML(responseContent, WxVehiclePayapplyResult.class);
     return wxVehiclePayapplyResult;
   }
