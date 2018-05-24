@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class ApiTestModule implements Module {
-  private static final String TEST_CONFIG_XML = "test-config.xml";
+  private static final String TEST_CONFIG_XML = "test-config.sample.xml";
 
   @Override
   public void configure(Binder binder) {

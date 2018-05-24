@@ -124,6 +124,16 @@ public interface WxPayService {
   <T> T createOrder(WxPayUnifiedOrderRequest request) throws WxPayException;
 
   /**
+   * 小程序-服务商-统一下单
+   * @param request 统一下单请求参数
+   * @param subAppId
+   * @param <T>     请使用{@link com.github.binarywang.wxvehicle.bean.order}包下的类
+   * @return  返回 {@link com.github.binarywang.wxvehicle.bean.order}包下的类对象
+   * @throws WxPayException
+   */
+  <T> T createOrder(WxPayUnifiedOrderRequest request, String subAppId) throws WxPayException;
+
+  /**
    * 统一下单(详见https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=9_1)
    * 在发起微信支付前，需要调用统一下单接口，获取"预支付交易会话标识"
    * 接口地址：https://api.mch.weixin.qq.com/pay/unifiedorder

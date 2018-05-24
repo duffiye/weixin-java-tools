@@ -16,7 +16,7 @@ public class ApiTestModule implements Module {
 
   @Override
   public void configure(Binder binder) {
-    try (InputStream is1 = ClassLoader.getSystemResourceAsStream("test-config.xml")) {
+    try (InputStream is1 = ClassLoader.getSystemResourceAsStream("test-config.sample.xml")) {
       TestConfigStorage config = this.fromXml(TestConfigStorage.class, is1);
       config.setAccessTokenLock(new ReentrantLock());
       WxMpService wxService = new WxMpServiceOkHttpImpl();

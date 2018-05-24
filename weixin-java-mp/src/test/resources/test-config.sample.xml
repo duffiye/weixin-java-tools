@@ -1,11 +1,11 @@
 <xml>
-  <appId>公众号appID</appId>
-  <secret>公众号appsecret</secret>
+  <appId>wx66a812a9570f393a</appId>
+  <secret>f2c41d109a091d942d99298aaed31769</secret>
   <token>公众号Token</token>
   <aesKey>公众号EncodingAESKey</aesKey>
-  <accessToken>可以不填写</accessToken>
-  <expiresTime>可以不填写</expiresTime>
-  <openid>某个加你公众号的用户的openId</openid>
+  <accessToken></accessToken>
+  <expiresTime>60</expiresTime>
+  <openid>o4GgauJNarXxeebXTVZsHp_59XVc</openid>
   <partnerId>微信商户平台ID</partnerId>
   <partnerKey>商户平台设置的API密钥</partnerKey>
   <keyPath>商户平台的证书文件地址</keyPath>

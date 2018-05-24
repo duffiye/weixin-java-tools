@@ -293,7 +293,7 @@ public abstract class BaseWxPayServiceImpl implements WxPayService {
 
       case TradeType.APP: {
         // APP支付绑定的是微信开放平台上的账号，APPID为开放平台上绑定APP后发放的参数
-        String appId = this.getConfig().getAppId();
+        String appId = this.getConfig().getSubAppId();
         Map<String, String> configMap = new HashMap<>();
         // 此map用于参与调起sdk支付的二次签名,格式全小写，timestamp只能是10位,格式固定，切勿修改
         String partnerId = getConfig().getMchId();
@@ -331,6 +331,7 @@ public abstract class BaseWxPayServiceImpl implements WxPayService {
             payResult,
             signType,
             this.getConfig().getMchKey(),
+//            "",
             false)
         );
         return (T) payResult;
@@ -718,5 +719,77 @@ public abstract class BaseWxPayServiceImpl implements WxPayService {
     }
 
     return responseContent;
+  }
+
+  @Override
+  public <T> T createOrder(WxPayUnifiedOrderRequest request, String subAppId) throws WxPayException {
+    WxPayUnifiedOrderResult unifiedOrderResult = this.unifiedOrder(request);
+    String prepayId = unifiedOrderResult.getPrepayId();
+    if (StringUtils.isBlank(prepayId)) {
+      throw new RuntimeException(String.format("无法获取prepay id，错误代码： '%s'，信息：%s。",
+        unifiedOrderResult.getErrCode(), unifiedOrderResult.getErrCodeDes()));
+    }
+
+    String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+    String nonceStr = String.valueOf(System.currentTimeMillis());
+    switch (request.getTradeType()) {
+      case TradeType.NATIVE: {
+        return (T) WxPayNativeOrderResult.builder()
+          .codeUrl(unifiedOrderResult.getCodeURL())
+          .build();
+      }
+
+      case TradeType.APP: {
+        // APP支付绑定的是微信开放平台上的账号，APPID为开放平台上绑定APP后发放的参数
+        String appId = this.getConfig().getSubAppId();
+        Map<String, String> configMap = new HashMap<>();
+        // 此map用于参与调起sdk支付的二次签名,格式全小写，timestamp只能是10位,格式固定，切勿修改
+        String partnerId = getConfig().getMchId();
+        configMap.put("prepayid", prepayId);
+        configMap.put("partnerid", partnerId);
+        String packageValue = "Sign=WXPay";
+        configMap.put("package", packageValue);
+        configMap.put("timestamp", timestamp);
+        configMap.put("noncestr", nonceStr);
+        configMap.put("appid", appId);
+
+        return (T) WxPayAppOrderResult.builder()
+          .sign(SignUtils.createSign(configMap, null, this.getConfig().getMchKey(), false))
+          .prepayId(prepayId)
+          .partnerId(partnerId)
+          .appId(appId)
+          .packageValue(packageValue)
+          .timeStamp(timestamp)
+          .nonceStr(nonceStr)
+          .build();
+      }
+
+      case TradeType.JSAPI: {
+        String signType = SignType.MD5;
+        WxPayMpOrderResult payResult = WxPayMpOrderResult.builder()
+//          .appId(unifiedOrderResult.getAppid())
+          .appId(subAppId)
+          .timeStamp(timestamp)
+          .nonceStr(nonceStr)
+          .packageValue("prepay_id=" + prepayId)
+          .signType(signType)
+          .build();
+
+        payResult.setPaySign(
+          SignUtils.createSign(
+            payResult,
+            signType,
+            this.getConfig().getMchKey(),
+//            "",
+            false)
+        );
+        return (T) payResult;
+      }
+
+      default: {
+        throw new WxPayException("该交易类型暂不支持");
+      }
+    }
+
   }
 }

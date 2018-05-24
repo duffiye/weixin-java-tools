@@ -15,6 +15,7 @@ import com.github.binarywang.wxvehicle.exception.WxPayException;
 import com.github.binarywang.wxvehicle.service.WxPayService;
 import com.github.binarywang.wxvehicle.testbase.ApiTestModule;
 import com.github.binarywang.wxvehicle.testbase.XmlWxPayConfig;
+import com.github.binarywang.wxvehicle.util.SignUtils;
 import com.google.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +25,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.github.binarywang.wxvehicle.constant.WxPayConstants.TarType;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -54,11 +57,13 @@ public class BaseWxPayServiceImplTest {
       .spbillCreateIp("11.1.11.1")
       .notifyUrl("111111")
       .tradeType(TradeType.JSAPI)
+      .subOpenid("oVX7b4u7jgjX0TjOIftxK5blFF-4")
       .openid(((XmlWxPayConfig) this.payService.getConfig()).getOpenid())
       .outTradeNo("1111112")
       .build();
     request.setSignType(SignType.HMAC_SHA256);
     WxPayUnifiedOrderResult result = this.payService.unifiedOrder(request);
+
     this.logger.info(result.toString());
     this.logger.warn(this.payService.getWxApiData().toString());
   }
@@ -72,17 +77,47 @@ public class BaseWxPayServiceImplTest {
   public void testCreateOrder_jsapi() throws Exception {
     WxPayMpOrderResult result = this.payService
       .createOrder(WxPayUnifiedOrderRequest.newBuilder()
-        .body("我去")
+        .body("小程序支付测试")
         .totalFee(1)
         .spbillCreateIp("11.1.11.1")
         .notifyUrl("111111")
         .tradeType(TradeType.JSAPI)
-        .openid(((XmlWxPayConfig) this.payService.getConfig()).getOpenid())
-        .outTradeNo("1111112")
+        .subOpenid("oVX7b4u7jgjX0TjOIftxK5blFF-4")
+        .outTradeNo(new Date().getTime() + "")
         .build());
+
     this.logger.info(result.toString());
+    this.logger.info("packageValue:" + result.getPackageValue());
+    this.logger.info("paySign:" + result.getPaySign());
+    this.logger.info("timestamp:" + result.getTimeStamp());
+    this.logger.info("signType:" + result.getSignType());
+    this.logger.info("nonceStr:" + result.getNonceStr());
+
     this.logger.warn(this.payService.getWxApiData().toString());
   }
+
+  @Test
+  public void testCreateOrder_miniapp() throws Exception {
+    WxPayUnifiedOrderRequest orderRequest = WxPayUnifiedOrderRequest.newBuilder()
+      .body("小程序支付测试")
+      .totalFee(1)
+      .spbillCreateIp("11.1.11.1")
+      .notifyUrl("111111")
+      .tradeType(TradeType.JSAPI)
+      .subOpenid("oVX7b4u7jgjX0TjOIftxK5blFF-4")
+      .outTradeNo(new Date().getTime() + "")
+      .build();
+    String subAppId = "";
+    WxPayMpOrderResult result = this.payService.createOrder(orderRequest, subAppId);
+
+    this.logger.info(result.toString());
+    this.logger.info("packageValue:" + result.getPackageValue());
+    this.logger.info("paySign:" + result.getPaySign());
+    this.logger.info("timestamp:" + result.getTimeStamp());
+    this.logger.info("signType:" + result.getSignType());
+    this.logger.info("nonceStr:" + result.getNonceStr());
+  }
+
 
   @Test
   public void testCreateOrder_app() throws Exception {
@@ -93,7 +128,7 @@ public class BaseWxPayServiceImplTest {
         .spbillCreateIp("11.1.11.1")
         .notifyUrl("111111")
         .tradeType(TradeType.APP)
-        .outTradeNo("1111112")
+        .outTradeNo(new Date().getTime() + "")
         .build());
     this.logger.info(result.toString());
     this.logger.warn(this.payService.getWxApiData().toString());
