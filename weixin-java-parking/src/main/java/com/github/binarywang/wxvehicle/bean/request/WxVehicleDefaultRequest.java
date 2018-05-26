@@ -1,6 +1,5 @@
 package com.github.binarywang.wxvehicle.bean.request;
 
-import com.github.binarywang.wxvehicle.bean.request.BaseWxVehicleRequest;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**

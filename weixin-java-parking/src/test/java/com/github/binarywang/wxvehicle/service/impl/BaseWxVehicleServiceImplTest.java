@@ -65,7 +65,7 @@ public class BaseWxVehicleServiceImplTest {
 
   @Test
   public void testParseOrderNotifyResult() throws Exception {
-    // 请参考com.github.binarywang.wxvehicle.bean.notify.WxPayOrderNotifyResultTest 里的单元测试
+    // 请参考com.github.binarywang.wxpay.bean.notify.WxPayOrderNotifyResultTest 里的单元测试
 
     String xmlString = "<xml>\n" +
       "  <appid><![CDATA[wx2421b1c4370ec43b]]></appid>\n" +
