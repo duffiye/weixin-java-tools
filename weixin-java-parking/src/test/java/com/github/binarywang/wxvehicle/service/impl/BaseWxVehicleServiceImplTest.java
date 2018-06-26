@@ -3,8 +3,10 @@ package com.github.binarywang.wxvehicle.service.impl;
 import com.github.binarywang.wxvehicle.bean.notify.WxVehicleOrderNotifyResult;
 import com.github.binarywang.wxvehicle.bean.request.WxVehicleNotificationRequest;
 import com.github.binarywang.wxvehicle.bean.request.WxVehiclePayApplyRequest;
+import com.github.binarywang.wxvehicle.bean.request.WxVehicleQueryStateRequest;
 import com.github.binarywang.wxvehicle.bean.result.WxVehicleNotificationResult;
 import com.github.binarywang.wxvehicle.bean.result.WxVehiclePayapplyResult;
+import com.github.binarywang.wxvehicle.bean.result.WxVehicleQueryStateResult;
 import com.github.binarywang.wxvehicle.constant.WxVehicleConstants.SignType;
 import com.github.binarywang.wxvehicle.exception.WxVehicleException;
 import com.github.binarywang.wxvehicle.service.WxVehicleService;
@@ -16,6 +18,7 @@ import org.testng.annotations.Guice;
 import org.testng.annotations.Test;
 
 import java.util.Date;
+
 
 /**
  * 测试支付相关接口
@@ -98,6 +101,18 @@ public class BaseWxVehicleServiceImplTest {
     System.out.println(result);
   }
 
+  @Test
+  public void testWxQueryState() throws WxVehicleException {
+    WxVehicleQueryStateRequest request = WxVehicleQueryStateRequest.newBuilder()
+      .subOpenid("11111111111")
+//      .plateNumber("")
+      .tradeScene("PARKING")
+      .build();
+    request.setSignType(SignType.HMAC_SHA256);
+    WxVehicleQueryStateResult result = this.wxVehicleService.queryState(request);
+    this.logger.info(result.toString());
+    this.logger.warn(this.wxVehicleService.getWxApiData().toString());
+  }
 
   @Test
   public void testGetConfig() throws Exception {

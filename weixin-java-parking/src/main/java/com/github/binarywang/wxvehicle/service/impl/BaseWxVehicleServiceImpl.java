@@ -2,11 +2,8 @@ package com.github.binarywang.wxvehicle.service.impl;
 
 import com.github.binarywang.wxvehicle.bean.WxVehicleApiData;
 import com.github.binarywang.wxvehicle.bean.notify.WxVehicleOrderNotifyResult;
-import com.github.binarywang.wxvehicle.bean.request.WxVehicleNotificationRequest;
-import com.github.binarywang.wxvehicle.bean.request.WxVehiclePayApplyRequest;
-import com.github.binarywang.wxvehicle.bean.request.WxVehicleQueryOrderRequest;
+import com.github.binarywang.wxvehicle.bean.request.*;
 import com.github.binarywang.wxvehicle.bean.result.*;
-import com.github.binarywang.wxvehicle.bean.request.WxVehicleDefaultRequest;
 import com.github.binarywang.wxvehicle.config.WxVehicleConfig;
 import com.github.binarywang.wxvehicle.exception.WxVehicleException;
 import com.github.binarywang.wxvehicle.service.WxVehicleService;
@@ -132,6 +129,15 @@ public abstract class BaseWxVehicleServiceImpl implements WxVehicleService {
     WxVehicleQueryOrderResult result = BaseWxVehicleResult.fromXML(responseContent, WxVehicleQueryOrderResult.class);
     result.composeCoupons();
     result.checkResult(this, request.getSignType(), true);
+    return result;
+  }
+
+  @Override
+  public WxVehicleQueryStateResult queryState(WxVehicleQueryStateRequest wxVehicleQueryStateRequest) throws WxVehicleException {
+    wxVehicleQueryStateRequest.checkAndSign(this.getConfig());
+    String url = this.getVehicleBaseUrl() + "/vehicle/partnerpay/querystate";
+    String responseContent = this.post(url, wxVehicleQueryStateRequest.toXML(), false);
+    WxVehicleQueryStateResult result = BaseWxVehicleResult.fromXML(responseContent, WxVehicleQueryStateResult.class);
     return result;
   }
 }

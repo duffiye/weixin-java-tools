@@ -4,9 +4,11 @@ import com.github.binarywang.wxvehicle.bean.WxVehicleApiData;
 import com.github.binarywang.wxvehicle.bean.notify.WxVehicleOrderNotifyResult;
 import com.github.binarywang.wxvehicle.bean.request.WxVehicleNotificationRequest;
 import com.github.binarywang.wxvehicle.bean.request.WxVehiclePayApplyRequest;
+import com.github.binarywang.wxvehicle.bean.request.WxVehicleQueryStateRequest;
 import com.github.binarywang.wxvehicle.bean.result.WxVehicleNotificationResult;
 import com.github.binarywang.wxvehicle.bean.result.WxVehiclePayapplyResult;
 import com.github.binarywang.wxvehicle.bean.result.WxVehicleQueryOrderResult;
+import com.github.binarywang.wxvehicle.bean.result.WxVehicleQueryStateResult;
 import com.github.binarywang.wxvehicle.config.WxVehicleConfig;
 import com.github.binarywang.wxvehicle.exception.WxVehicleException;
 
@@ -114,4 +116,11 @@ public interface WxVehicleService {
    */
   WxVehicleQueryOrderResult queryOrder(String transactionId, String outTradeNo) throws WxVehicleException;
 
+  /**
+   * 用户状态查询
+   * @param wxVehicleQueryStateRequest
+   * @return
+   * @throws WxVehicleException
+   */
+  WxVehicleQueryStateResult queryState(WxVehicleQueryStateRequest wxVehicleQueryStateRequest) throws WxVehicleException;
 }
