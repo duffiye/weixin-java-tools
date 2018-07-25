@@ -16,12 +16,12 @@ public class WxVehicleQueryStateResult extends BaseWxVehicleResult {
    * 用户状态
    * user_state
    * NORMAL：正常用户，已开通车主服务，且已授权访问
-
-   PAUSED：已暂停车主服务
-
-   OVERDUE: 用户已开通车主服务，但欠费状态。提示用户还款，请跳转到车主服务
-
-   UNAUTHORIZED：用户未授权使用当前业务，或未开通车主服务。请跳转到授权接口
+   *
+   * PAUSED：已暂停车主服务
+   *
+   * OVERDUE: 用户已开通车主服务，但欠费状态。提示用户还款，请跳转到车主服务
+   *
+   * UNAUTHORIZED：用户未授权使用当前业务，或未开通车主服务。请跳转到授权接口
    * </pre>
    */
   @XStreamAlias("user_state")
@@ -62,7 +62,7 @@ public class WxVehicleQueryStateResult extends BaseWxVehicleResult {
    * 车牌号
    * plate_number_list
    * 车牌号列表。仅包括省份+车牌，不包括特殊字符。多个车牌时，以分号间隔。
-   注：在PARKING SPACE场景下无返回
+   * 注：在PARKING SPACE场景下无返回
    * </pre>
    */
   @XStreamAlias("plate_number_list")
