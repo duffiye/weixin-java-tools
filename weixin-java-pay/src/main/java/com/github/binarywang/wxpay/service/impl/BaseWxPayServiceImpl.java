@@ -709,6 +709,8 @@ public abstract class BaseWxPayServiceImpl implements WxPayService {
           builder.appId(request.getAppId());
         }
 
+        log.info("小程序请求报文内容:" + builder.toString());
+
 
         WxPayMpOrderResult payResult = builder.build();
 
