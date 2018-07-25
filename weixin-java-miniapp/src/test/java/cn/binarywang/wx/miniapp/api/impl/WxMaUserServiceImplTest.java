@@ -54,4 +54,10 @@ public class WxMaUserServiceImplTest {
     assertNotNull(phoneNoInfo);
     System.out.println(phoneNoInfo.toString());
   }
+
+  @Test
+  public void testGetUserInfo2() {
+
+  }
+
 }

@@ -101,7 +101,7 @@ public class BaseWxPayServiceImplTest {
       .spbillCreateIp("11.1.11.1")
       .notifyUrl("111111")
       .tradeType(TradeType.JSAPI)
-      .subOpenid("oVX7b4u7jgjX0TjOIftxK5blFF-4")
+      .subOpenid("oVf3S5IjHh7U9TO5vIEqBLbMWhWI")
       .outTradeNo(new Date().getTime() + "")
       .build();
     WxPayMpOrderResult result = this.payService.createOrder(orderRequest);
