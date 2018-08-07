@@ -31,12 +31,12 @@ public class EntPayServiceImplTest {
   @Test
   public void testEntPay() throws WxPayException {
     EntPayRequest request = EntPayRequest.newBuilder()
-      .partnerTradeNo("Eb6Aep7uVTdbkJqrP4")
-      .openid("ojOQA0y9o-Eb6Aep7uVTdbkJqrP5")
-      .amount(100)
-      .spbillCreateIp("10.10.10.10")
+      .partnerTradeNo("1024196955984625665")
+      .amount(30)
+      .spbillCreateIp("172.16.7.91")
       .checkName(CheckNameOption.NO_CHECK)
-      .description("描述信息")
+      .description("星富通")
+      .openid("otbjl5TS9WqLRx0n3uFQWaz2y-Q4")
       .build();
 
     this.logger.info(this.payService.getEntPayService().entPay(request).toString());

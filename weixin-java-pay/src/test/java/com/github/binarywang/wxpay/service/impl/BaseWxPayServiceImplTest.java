@@ -258,9 +258,16 @@ public class BaseWxPayServiceImplTest {
   @Test
   public void testSendRedpack() throws Exception {
     WxPaySendRedpackRequest request = new WxPaySendRedpackRequest();
-    request.setActName("abc");
-    request.setClientIp("aaa");
-    request.setMchBillNo("aaaa");
+    request.setActName("星停车活动");
+    request.setClientIp("172.16.7.91");
+    request.setMchBillNo("1023810437247926278");
+    request.setTotalAmount(50);
+    request.setTotalNum(1);
+    request.setSceneId("PRODUCT_5");
+    request.setSendName("星富通");
+    request.setWishing("感谢您参加猜灯谜活动，祝您元宵节快乐！");
+    request.setActName("猜灯谜抢红包活动");
+    request.setRemark("猜越多得越多，快来抢");
     request.setReOpenid(((XmlWxPayConfig) this.payService.getConfig()).getOpenid());
     WxPaySendRedpackResult redpackResult = this.payService.sendRedpack(request);
     this.logger.info(redpackResult.toString());
@@ -453,6 +460,7 @@ public class BaseWxPayServiceImplTest {
 
   @Test
   public void testGetWxApiData() throws Exception {
+//    "182B155849A69897579E598D796BC17A";
     //see test in testUnifiedOrder()
   }
 

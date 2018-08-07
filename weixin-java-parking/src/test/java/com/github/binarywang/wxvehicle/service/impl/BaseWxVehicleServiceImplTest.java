@@ -38,7 +38,7 @@ public class BaseWxVehicleServiceImplTest {
   @Test
   public void testWxVehicleNotification() throws WxVehicleException {
     WxVehicleNotificationRequest request = WxVehicleNotificationRequest.newBuilder()
-      .sceneInfo("{\"scene_info\":{\"start_time\":\"20180502094339\",\"plate_number\":\"湘A6L46C\",\"car _type\":\"小型车\",\"parking_name\":\"欢乐海岸停车场\",\"free_time\":\"1200\"}}")
+      .sceneInfo("{\"scene_info\":{\"start_time\":\"20180502094339\",\"plate_number\":\"京A00000\",\"car _type\":\"小型车\",\"parking_name\":\"欢乐海岸停车场\",\"free_time\":\"1200\"}}")
       .tradeScene("PARKING")
       .build();
     request.setSignType(SignType.HMAC_SHA256);
@@ -50,14 +50,14 @@ public class BaseWxVehicleServiceImplTest {
   @Test
   public void testWxVehiclePayApply() throws WxVehicleException {
     WxVehiclePayApplyRequest request = WxVehiclePayApplyRequest.newBuilder()
-      .body("停车费")
-      .outTradeNo("T" + new Date().getTime())
+      .body("麓谷信息港停车场停车费")
+      .outTradeNo("1016675339444682753")
       .feeType("CNY")
-      .spbillCreateIp("127.0.0.1")
-      .notifyUrl("http://www.baidu.com")
+      .spbillCreateIp("172.16.7.14")
+      .notifyUrl("www.baidu.com")
       .tradeType("PAP")
-      .totalFee("1")
-      .sceneInfo("{\"scene_info\":{\"start_time\":\"20180509114339\",\"plate_number\":\"湘A6L46C\",\"car _type\":\"大型车\",\"parking_name\":\"欢乐海岸停车场\",\"free_time\":\"1200\" ,\"charging_time\":\"3600\",}}")
+      .totalFee("1500")
+      .sceneInfo("{\"scene_info\":{\"start_time\":\"20180710095233\",\"plate_number\":\"湘A0X18N\",\"car _type\":\"小型车\",\"parking_name\":\"垫付失败\",\"free_time\":\"1200\" ,\"charging_time\":\"15982\"}}")
       .tradeScene("PARKING")
       .build();
     request.setSignType(SignType.HMAC_SHA256);
@@ -104,8 +104,8 @@ public class BaseWxVehicleServiceImplTest {
   @Test
   public void testWxQueryState() throws WxVehicleException {
     WxVehicleQueryStateRequest request = WxVehicleQueryStateRequest.newBuilder()
-      .subOpenid("11111111111")
-//      .plateNumber("")
+      .subOpenid("otbjl5TS9WqLRx0n3uFQWaz2y-Q4")
+      .plateNumber("")
       .tradeScene("PARKING")
       .build();
     request.setSignType(SignType.HMAC_SHA256);
