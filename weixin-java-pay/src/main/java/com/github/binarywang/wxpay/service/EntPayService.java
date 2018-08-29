@@ -1,6 +1,6 @@
 package com.github.binarywang.wxpay.service;
 
-import com.github.binarywang.wxpay.bean.entpay.*;
+import com.github.binarywang.wxpay.bean.papay.*;
 import com.github.binarywang.wxpay.exception.WxPayException;
 
 /**

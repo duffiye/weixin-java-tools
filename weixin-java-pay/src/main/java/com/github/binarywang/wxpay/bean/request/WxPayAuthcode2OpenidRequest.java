@@ -34,5 +34,6 @@ public class WxPayAuthcode2OpenidRequest extends BaseWxPayRequest {
   @Override
   protected void checkConstraints() {
     // nothing to do
+
   }
 }

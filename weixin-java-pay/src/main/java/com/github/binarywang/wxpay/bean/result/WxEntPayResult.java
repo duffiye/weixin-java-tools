@@ -1,6 +1,6 @@
 package com.github.binarywang.wxpay.bean.result;
 
-import com.github.binarywang.wxpay.bean.entpay.EntPayResult;
+import com.github.binarywang.wxpay.bean.papay.EntPayResult;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import org.apache.commons.beanutils.BeanUtils;
 

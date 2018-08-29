@@ -1,4 +1,4 @@
-package com.github.binarywang.wxpay.bean.entpay;
+package com.github.binarywang.wxpay.bean.papay;
 
 import com.github.binarywang.wxpay.bean.result.BaseWxPayResult;
 import com.thoughtworks.xstream.annotations.XStreamAlias;

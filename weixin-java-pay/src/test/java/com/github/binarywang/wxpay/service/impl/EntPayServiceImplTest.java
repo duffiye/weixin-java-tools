@@ -1,8 +1,8 @@
 package com.github.binarywang.wxpay.service.impl;
 
-import com.github.binarywang.wxpay.bean.entpay.EntPayBankRequest;
-import com.github.binarywang.wxpay.bean.entpay.EntPayBankResult;
-import com.github.binarywang.wxpay.bean.entpay.EntPayRequest;
+import com.github.binarywang.wxpay.bean.papay.EntPayBankRequest;
+import com.github.binarywang.wxpay.bean.papay.EntPayBankResult;
+import com.github.binarywang.wxpay.bean.papay.EntPayRequest;
 import com.github.binarywang.wxpay.constant.WxPayConstants.CheckNameOption;
 import com.github.binarywang.wxpay.exception.WxPayException;
 import com.github.binarywang.wxpay.service.WxPayService;
