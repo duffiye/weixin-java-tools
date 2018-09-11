@@ -1,0 +1,131 @@
+package com.github.binarywang.profitsharing.service.impl;
+
+import com.github.binarywang.profitsharing.bean.notify.WxVehicleOrderNotifyResult;
+import com.github.binarywang.profitsharing.bean.request.WxVehicleNotificationRequest;
+import com.github.binarywang.profitsharing.bean.request.WxVehiclePayApplyRequest;
+import com.github.binarywang.profitsharing.bean.request.WxVehicleQueryStateRequest;
+import com.github.binarywang.profitsharing.bean.result.WxVehicleNotificationResult;
+import com.github.binarywang.profitsharing.bean.result.WxVehiclePayapplyResult;
+import com.github.binarywang.profitsharing.bean.result.WxVehicleQueryStateResult;
+import com.github.binarywang.profitsharing.constant.WxVehicleConstants.SignType;
+import com.github.binarywang.profitsharing.exception.WxVehicleException;
+import com.github.binarywang.profitsharing.service.WxVehicleService;
+import com.github.binarywang.profitsharing.testbase.ApiTestModule;
+import com.google.inject.Inject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.testng.annotations.Guice;
+import org.testng.annotations.Test;
+
+
+/**
+ * 测试支付相关接口
+ * Created by Binary Wang on 2016/7/28.
+ *
+ * @author <a href="https://github.com/binarywang">Binary Wang</a>
+ */
+@Test
+@Guice(modules = ApiTestModule.class)
+public class BaseWxVehicleServiceImplTest {
+  private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+  @Inject
+  private WxVehicleService wxVehicleService;
+
+
+  @Test
+  public void testWxVehicleNotification() throws WxVehicleException {
+    WxVehicleNotificationRequest request = WxVehicleNotificationRequest.newBuilder()
+      .sceneInfo("{\"scene_info\":{\"start_time\":\"20180502094339\",\"plate_number\":\"京A00000\",\"car _type\":\"小型车\",\"parking_name\":\"欢乐海岸停车场\",\"free_time\":\"1200\"}}")
+      .tradeScene("PARKING")
+      .build();
+    request.setSignType(SignType.HMAC_SHA256);
+    WxVehicleNotificationResult result = this.wxVehicleService.notification(request);
+    this.logger.info(result.toString());
+    this.logger.warn(this.wxVehicleService.getWxApiData().toString());
+  }
+
+  @Test
+  public void testWxVehiclePayApply() throws WxVehicleException {
+    WxVehiclePayApplyRequest request = WxVehiclePayApplyRequest.newBuilder()
+      .body("麓谷信息港停车场停车费")
+      .outTradeNo("1016675339444682753")
+      .feeType("CNY")
+      .spbillCreateIp("172.16.7.14")
+      .notifyUrl("www.baidu.com")
+      .tradeType("PAP")
+      .totalFee("1500")
+      .sceneInfo("{\"scene_info\":{\"start_time\":\"20180710095233\",\"plate_number\":\"湘A0X18N\",\"car _type\":\"小型车\",\"parking_name\":\"垫付失败\",\"free_time\":\"1200\" ,\"charging_time\":\"15982\"}}")
+      .tradeScene("PARKING")
+      .build();
+    request.setSignType(SignType.HMAC_SHA256);
+    WxVehiclePayapplyResult result = this.wxVehicleService.payApply(request);
+    this.logger.info(result.toString());
+    this.logger.warn(this.wxVehicleService.getWxApiData().toString());
+  }
+
+  @Test
+  public void testParseOrderNotifyResult() throws Exception {
+    // 请参考com.github.binarywang.wxpay.bean.notify.WxPayOrderNotifyResultTest 里的单元测试
+
+    String xmlString = "<xml>\n" +
+      "  <appid><![CDATA[wx2421b1c4370ec43b]]></appid>\n" +
+      "  <attach><![CDATA[支付测试]]></attach>\n" +
+      "  <bank_type><![CDATA[CFT]]></bank_type>\n" +
+      "  <fee_type><![CDATA[CNY]]></fee_type>\n" +
+      "  <is_subscribe><![CDATA[Y]]></is_subscribe>\n" +
+      "  <mch_id><![CDATA[10000100]]></mch_id>\n" +
+      "  <nonce_str><![CDATA[5d2b6c2a8db53831f7eda20af46e531c]]></nonce_str>\n" +
+      "  <openid><![CDATA[oUpF8uMEb4qRXf22hE3X68TekukE]]></openid>\n" +
+      "  <out_trade_no><![CDATA[1409811653]]></out_trade_no>\n" +
+      "  <result_code><![CDATA[SUCCESS]]></result_code>\n" +
+      "  <return_code><![CDATA[SUCCESS]]></return_code>\n" +
+      "  <sign><![CDATA[B552ED6B279343CB493C5DD0D78AB241]]></sign>\n" +
+      "  <sub_mch_id><![CDATA[10000100]]></sub_mch_id>\n" +
+      "  <time_end><![CDATA[20140903131540]]></time_end>\n" +
+      "  <total_fee>1</total_fee>\n" +
+      "  <trade_type><![CDATA[JSAPI]]></trade_type>\n" +
+      "  <transaction_id><![CDATA[1004400740201409030005092168]]></transaction_id>\n" +
+      "   <coupon_count>2</coupon_count>\n" +
+      "   <coupon_type_0><![CDATA[CASH]]></coupon_type_0>\n" +
+      "   <coupon_id_0>10000</coupon_id_0>\n" +
+      "   <coupon_fee_0>100</coupon_fee_0>\n" +
+      "   <coupon_type_1><![CDATA[NO_CASH]]></coupon_type_1>\n" +
+      "   <coupon_id_1>10001</coupon_id_1>\n" +
+      "   <coupon_fee_1>200</coupon_fee_1>\n" +
+      "</xml>";
+
+    WxVehicleOrderNotifyResult result = this.wxVehicleService.parseOrderNotifyResult(xmlString);
+    System.out.println(result);
+  }
+
+  @Test
+  public void testWxQueryState() throws WxVehicleException {
+    WxVehicleQueryStateRequest request = WxVehicleQueryStateRequest.newBuilder()
+      .subOpenid("otbjl5TS9WqLRx0n3uFQWaz2y-Q4")
+      .plateNumber("")
+      .tradeScene("PARKING")
+      .build();
+    request.setSignType(SignType.HMAC_SHA256);
+    WxVehicleQueryStateResult result = this.wxVehicleService.queryState(request);
+    this.logger.info(result.toString());
+    this.logger.warn(this.wxVehicleService.getWxApiData().toString());
+  }
+
+  @Test
+  public void testGetConfig() throws Exception {
+    // no need to test
+  }
+
+  @Test
+  public void testSetConfig() throws Exception {
+    // no need to test
+  }
+
+
+  @Test
+  public void testGetWxApiData() throws Exception {
+    //see test in testUnifiedOrder()
+  }
+
+}
