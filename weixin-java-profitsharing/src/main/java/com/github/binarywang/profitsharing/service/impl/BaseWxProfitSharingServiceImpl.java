@@ -1,14 +1,14 @@
-package com.github.binarywang.profitsharing.service.impl;
+package com.github.binarywang.wxvehicle.service.impl;
 
-import com.github.binarywang.profitsharing.bean.WxProfitSharingApiData;
-import com.github.binarywang.profitsharing.bean.request.WxProfitSharingDefaultRequest;
-import com.github.binarywang.profitsharing.bean.request.WxProfitSharingRequest;
-import com.github.binarywang.profitsharing.bean.result.BaseWxProfitSharingResult;
-import com.github.binarywang.profitsharing.exception.WxProfitSharingException;
-import com.github.binarywang.profitsharing.service.WxProfitSharingService;
-import com.github.binarywang.profitsharing.bean.result.WxProfitSharingResult;
-import com.github.binarywang.profitsharing.bean.result.WxProfitSharingSandboxSignKeyResult;
-import com.github.binarywang.profitsharing.config.WxProfitSharingConfig;
+import com.github.binarywang.wxvehicle.bean.WxProfitSharingApiData;
+import com.github.binarywang.wxvehicle.bean.request.WxProfitSharingDefaultRequest;
+import com.github.binarywang.wxvehicle.bean.request.WxProfitSharingRequest;
+import com.github.binarywang.wxvehicle.bean.result.BaseWxProfitSharingResult;
+import com.github.binarywang.wxvehicle.exception.WxProfitSharingException;
+import com.github.binarywang.wxvehicle.service.WxProfitSharingService;
+import com.github.binarywang.wxvehicle.bean.result.WxProfitSharingResult;
+import com.github.binarywang.wxvehicle.bean.result.WxProfitSharingSandboxSignKeyResult;
+import com.github.binarywang.wxvehicle.config.WxProfitSharingConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -77,8 +77,8 @@ public abstract class BaseWxProfitSharingServiceImpl implements WxProfitSharingS
   @Override
   public WxProfitSharingResult profitSharing(WxProfitSharingRequest wxProfitSharingRequest) throws WxProfitSharingException {
     wxProfitSharingRequest.checkAndSign(this.getConfig());
-    String url = this.getVehicleBaseUrl() + "/secapi/pay/profitsharing";
-    String responseContent = this.post(url, wxProfitSharingRequest.toXML(), false);
+    String url = this.getVehicleBaseUrl() + "/secapi/pay/wxvehicle";
+    String responseContent = this.post(url, wxProfitSharingRequest.toXML(), true);
     WxProfitSharingResult wxProfitSharingResult = BaseWxProfitSharingResult.fromXML(responseContent, WxProfitSharingResult.class);
     return wxProfitSharingResult;
   }

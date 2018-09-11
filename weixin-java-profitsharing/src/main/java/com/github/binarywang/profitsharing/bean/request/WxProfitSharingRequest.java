@@ -1,6 +1,6 @@
-package com.github.binarywang.profitsharing.bean.request;
+package com.github.binarywang.wxvehicle.bean.request;
 
-import com.github.binarywang.profitsharing.exception.WxProfitSharingException;
+import com.github.binarywang.wxvehicle.exception.WxProfitSharingException;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import lombok.*;
 import me.chanjar.weixin.common.annotation.Required;
@@ -18,13 +18,13 @@ public class WxProfitSharingRequest extends BaseWxProfitSharingRequest {
   /**
    * <pre>
    * 商户订单号
-   * out_trade_no
+   * out_order_no
    * 商户系统内部的订单号,32 个字符内、可包含字母
    * </pre>
    */
   @Required
-  @XStreamAlias("out_trade_no")
-  private String outTradeNo;
+  @XStreamAlias("out_order_no")
+  private String outOrderNo;
 
   /**
    * <pre>

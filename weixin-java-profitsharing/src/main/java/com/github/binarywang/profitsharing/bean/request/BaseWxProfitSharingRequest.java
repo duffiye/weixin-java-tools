@@ -1,8 +1,8 @@
-package com.github.binarywang.profitsharing.bean.request;
+package com.github.binarywang.wxvehicle.bean.request;
 
-import com.github.binarywang.profitsharing.config.WxProfitSharingConfig;
-import com.github.binarywang.profitsharing.exception.WxProfitSharingException;
-import com.github.binarywang.profitsharing.util.SignUtils;
+import com.github.binarywang.wxvehicle.config.WxProfitSharingConfig;
+import com.github.binarywang.wxvehicle.exception.WxProfitSharingException;
+import com.github.binarywang.wxvehicle.util.SignUtils;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import lombok.Data;
@@ -15,7 +15,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-import static com.github.binarywang.profitsharing.constant.WxProfitSharingConstants.SignType.ALL_SIGN_TYPES;
+import static com.github.binarywang.wxvehicle.constant.WxProfitSharingConstants.SignType.ALL_SIGN_TYPES;
 
 /**
  * <pre>

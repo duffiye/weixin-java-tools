@@ -1,6 +1,6 @@
-package com.github.binarywang.profitsharing.testbase;
+package com.github.binarywang.wxvehicle.testbase;
 
-import com.github.binarywang.profitsharing.config.WxProfitSharingConfig;
+import com.github.binarywang.wxvehicle.config.WxProfitSharingConfig;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 @XStreamAlias("xml")

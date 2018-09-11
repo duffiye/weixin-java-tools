@@ -1,4 +1,4 @@
-package com.github.binarywang.profitsharing.bean.order;
+package com.github.binarywang.wxvehicle.bean.order;
 
 public class ProfitSharingReceiver {
 

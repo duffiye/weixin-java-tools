@@ -1,4 +1,4 @@
-package com.github.binarywang.profitsharing.constant;
+package com.github.binarywang.wxvehicle.constant;
 
 import java.text.Format;
 import java.util.List;

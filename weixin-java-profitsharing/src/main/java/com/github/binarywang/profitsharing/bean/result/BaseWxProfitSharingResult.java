@@ -1,8 +1,8 @@
-package com.github.binarywang.profitsharing.bean.result;
+package com.github.binarywang.wxvehicle.bean.result;
 
-import com.github.binarywang.profitsharing.exception.WxProfitSharingException;
-import com.github.binarywang.profitsharing.service.WxProfitSharingService;
-import com.github.binarywang.profitsharing.util.SignUtils;
+import com.github.binarywang.wxvehicle.exception.WxProfitSharingException;
+import com.github.binarywang.wxvehicle.service.WxProfitSharingService;
+import com.github.binarywang.wxvehicle.util.SignUtils;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;

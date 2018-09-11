@@ -1,7 +1,7 @@
-package com.github.binarywang.profitsharing.service.impl;
+package com.github.binarywang.wxvehicle.service.impl;
 
-import com.github.binarywang.profitsharing.bean.WxProfitSharingApiData;
-import com.github.binarywang.profitsharing.exception.WxProfitSharingException;
+import com.github.binarywang.wxvehicle.bean.WxProfitSharingApiData;
+import com.github.binarywang.wxvehicle.exception.WxProfitSharingException;
 import jodd.util.Base64;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.auth.AuthScope;
@@ -31,7 +31,7 @@ import java.nio.charset.StandardCharsets;
  *
  * @author <a href="https://github.com/binarywang">Binary Wang</a>
  */
-public class WxProfitSharingServiceApacheHttpImpl extends com.github.binarywang.profitsharing.service.impl.BaseWxProfitSharingServiceImpl {
+public class WxProfitSharingServiceApacheHttpImpl extends com.github.binarywang.wxvehicle.service.impl.BaseWxProfitSharingServiceImpl {
   @Override
   public byte[] postForBytes(String url, String requestStr, boolean useKey) throws WxProfitSharingException {
     try {

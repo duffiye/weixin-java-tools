@@ -1,12 +1,12 @@
-package com.github.binarywang.profitsharing.service.impl;
+package com.github.binarywang.wxvehicle.service.impl;
 
-import com.github.binarywang.profitsharing.bean.order.ProfitSharingReceiver;
-import com.github.binarywang.profitsharing.bean.request.WxProfitSharingRequest;
-import com.github.binarywang.profitsharing.bean.result.WxProfitSharingResult;
-import com.github.binarywang.profitsharing.constant.WxProfitSharingConstants.SignType;
-import com.github.binarywang.profitsharing.exception.WxProfitSharingException;
-import com.github.binarywang.profitsharing.service.WxProfitSharingService;
-import com.github.binarywang.profitsharing.testbase.ApiTestModule;
+import com.github.binarywang.wxvehicle.bean.order.ProfitSharingReceiver;
+import com.github.binarywang.wxvehicle.bean.request.WxProfitSharingRequest;
+import com.github.binarywang.wxvehicle.bean.result.WxProfitSharingResult;
+import com.github.binarywang.wxvehicle.constant.WxProfitSharingConstants.SignType;
+import com.github.binarywang.wxvehicle.exception.WxProfitSharingException;
+import com.github.binarywang.wxvehicle.service.WxProfitSharingService;
+import com.github.binarywang.wxvehicle.testbase.ApiTestModule;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.inject.Inject;
@@ -51,7 +51,7 @@ public class BaseWxProfitSharingServiceImplTest {
     final String json = gson.toJson(list);
 
     WxProfitSharingRequest request = WxProfitSharingRequest.newBuilder()
-      .outTradeNo("1016675339444682753")
+      .outOrderNo("1016675339444682753")
       .transactionId("4208450740201411110007820472")
 //      .totalFee("1")
       .receivers(json)

@@ -1,8 +1,8 @@
-package com.github.binarywang.profitsharing.util;
+package com.github.binarywang.wxvehicle.util;
 
-import com.github.binarywang.profitsharing.bean.request.BaseWxProfitSharingRequest;
-import com.github.binarywang.profitsharing.bean.result.BaseWxProfitSharingResult;
-import com.github.binarywang.profitsharing.constant.WxProfitSharingConstants.SignType;
+import com.github.binarywang.wxvehicle.bean.request.BaseWxProfitSharingRequest;
+import com.github.binarywang.wxvehicle.bean.result.BaseWxProfitSharingResult;
+import com.github.binarywang.wxvehicle.constant.WxProfitSharingConstants.SignType;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.thoughtworks.xstream.annotations.XStreamAlias;

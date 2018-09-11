@@ -1,4 +1,4 @@
-package com.github.binarywang.profitsharing.bean;
+package com.github.binarywang.wxvehicle.bean;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

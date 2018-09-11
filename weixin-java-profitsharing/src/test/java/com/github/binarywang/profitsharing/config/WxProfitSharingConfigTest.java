@@ -1,4 +1,4 @@
-package com.github.binarywang.profitsharing.config;
+package com.github.binarywang.wxvehicle.config;
 
 import org.testng.annotations.Test;
 

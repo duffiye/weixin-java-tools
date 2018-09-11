@@ -1,10 +1,10 @@
-package com.github.binarywang.profitsharing.service;
+package com.github.binarywang.wxvehicle.service;
 
-import com.github.binarywang.profitsharing.bean.WxProfitSharingApiData;
-import com.github.binarywang.profitsharing.bean.request.WxProfitSharingRequest;
-import com.github.binarywang.profitsharing.exception.WxProfitSharingException;
-import com.github.binarywang.profitsharing.bean.result.WxProfitSharingResult;
-import com.github.binarywang.profitsharing.config.WxProfitSharingConfig;
+import com.github.binarywang.wxvehicle.bean.WxProfitSharingApiData;
+import com.github.binarywang.wxvehicle.bean.request.WxProfitSharingRequest;
+import com.github.binarywang.wxvehicle.exception.WxProfitSharingException;
+import com.github.binarywang.wxvehicle.bean.result.WxProfitSharingResult;
+import com.github.binarywang.wxvehicle.config.WxProfitSharingConfig;
 
 /**
  * <pre>
