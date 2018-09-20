@@ -1,4 +1,4 @@
-package com.github.binarywang.wxvehicle.bean.result;
+package com.github.binarywang.profitsharing.bean.result;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import lombok.Data;

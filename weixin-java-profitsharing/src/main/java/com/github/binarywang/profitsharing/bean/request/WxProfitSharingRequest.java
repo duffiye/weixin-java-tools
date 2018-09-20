@@ -1,6 +1,6 @@
-package com.github.binarywang.wxvehicle.bean.request;
+package com.github.binarywang.profitsharing.bean.request;
 
-import com.github.binarywang.wxvehicle.exception.WxProfitSharingException;
+import com.github.binarywang.profitsharing.exception.WxProfitSharingException;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import lombok.*;
 import me.chanjar.weixin.common.annotation.Required;
@@ -36,17 +36,6 @@ public class WxProfitSharingRequest extends BaseWxProfitSharingRequest {
   @Required
   @XStreamAlias("transaction_id")
   private String transactionId;
-//
-//  /**
-//   * <pre>
-//   * 总金额
-//   * total_fee
-//   * 订单总金额，单位为分，只能为整数
-//   * </pre>
-//   */
-//  @Required
-//  @XStreamAlias("total_fee")
-//  private String totalFee;
 
 
   /**

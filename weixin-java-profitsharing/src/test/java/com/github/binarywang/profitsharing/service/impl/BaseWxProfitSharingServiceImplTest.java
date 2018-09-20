@@ -1,14 +1,16 @@
-package com.github.binarywang.wxvehicle.service.impl;
+package com.github.binarywang.profitsharing.service.impl;
 
-import com.github.binarywang.wxvehicle.bean.order.ProfitSharingReceiver;
-import com.github.binarywang.wxvehicle.bean.request.WxProfitSharingRequest;
-import com.github.binarywang.wxvehicle.bean.result.WxProfitSharingResult;
-import com.github.binarywang.wxvehicle.constant.WxProfitSharingConstants.SignType;
-import com.github.binarywang.wxvehicle.exception.WxProfitSharingException;
-import com.github.binarywang.wxvehicle.service.WxProfitSharingService;
-import com.github.binarywang.wxvehicle.testbase.ApiTestModule;
+import com.github.binarywang.profitsharing.bean.order.ProfitSharingReceiver;
+import com.github.binarywang.profitsharing.bean.request.WxProfitSharingAddReceiverRequest;
+import com.github.binarywang.profitsharing.bean.request.WxProfitSharingRequest;
+import com.github.binarywang.profitsharing.bean.result.WxProfitSharingAddReceiverResult;
+import com.github.binarywang.profitsharing.bean.result.WxProfitSharingResult;
+import com.github.binarywang.profitsharing.constant.WxProfitSharingConstants.SignType;
+import com.github.binarywang.profitsharing.exception.WxProfitSharingException;
+import com.github.binarywang.profitsharing.service.WxProfitSharingService;
+import com.github.binarywang.profitsharing.testbase.ApiTestModule;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
+import com.google.gson.GsonBuilder;
 import com.google.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,19 +43,20 @@ public class BaseWxProfitSharingServiceImplTest {
     List<ProfitSharingReceiver> list = new ArrayList<ProfitSharingReceiver>();
     ProfitSharingReceiver profitSharingReceiver = new ProfitSharingReceiver();
     profitSharingReceiver.setType("PERSONAL_WECHATID");
-    profitSharingReceiver.setAccount("duffiye");
+    profitSharingReceiver.setAccount("jian706532704");
     profitSharingReceiver.setAmount(1);
     profitSharingReceiver.setDescription("test");
 
     list.add(profitSharingReceiver);
 
-    Gson gson = new Gson();
-    final String json = gson.toJson(list);
+    Gson gson = new GsonBuilder().create();
+    String json = gson.toJson(list);
+
+    this.logger.info(json);
 
     WxProfitSharingRequest request = WxProfitSharingRequest.newBuilder()
-      .outOrderNo("1016675339444682753")
-      .transactionId("4208450740201411110007820472")
-//      .totalFee("1")
+      .outOrderNo("4200000181201809199126163052")
+      .transactionId("4200000181201809199126163052")
       .receivers(json)
       .build();
     request.setSignType(SignType.HMAC_SHA256);
@@ -61,6 +64,30 @@ public class BaseWxProfitSharingServiceImplTest {
     this.logger.info(result.toString());
     this.logger.warn(this.wxProfitSharingService.getWxApiData().toString());
   }
+
+  @Test
+  public void testWxProfitSharingAdd() throws WxProfitSharingException {
+    ProfitSharingReceiver profitSharingReceiver = new ProfitSharingReceiver();
+    profitSharingReceiver.setType("PERSONAL_WECHATID");
+    profitSharingReceiver.setAccount("jian706532704");
+    profitSharingReceiver.setName("张剑");
+
+
+    Gson gson = new GsonBuilder().create();
+    String json = gson.toJson(profitSharingReceiver);
+
+    this.logger.info(json);
+
+    WxProfitSharingAddReceiverRequest request = WxProfitSharingAddReceiverRequest.newBuilder()
+      .receiver(json)
+
+      .build();
+    request.setSignType(SignType.HMAC_SHA256);
+    WxProfitSharingAddReceiverResult result = this.wxProfitSharingService.add(request);
+    this.logger.info(result.toString());
+    this.logger.warn(this.wxProfitSharingService.getWxApiData().toString());
+  }
+
 
 
 

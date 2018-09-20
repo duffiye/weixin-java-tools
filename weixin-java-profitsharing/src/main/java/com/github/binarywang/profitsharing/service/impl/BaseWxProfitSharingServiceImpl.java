@@ -1,14 +1,11 @@
-package com.github.binarywang.wxvehicle.service.impl;
+package com.github.binarywang.profitsharing.service.impl;
 
-import com.github.binarywang.wxvehicle.bean.WxProfitSharingApiData;
-import com.github.binarywang.wxvehicle.bean.request.WxProfitSharingDefaultRequest;
-import com.github.binarywang.wxvehicle.bean.request.WxProfitSharingRequest;
-import com.github.binarywang.wxvehicle.bean.result.BaseWxProfitSharingResult;
-import com.github.binarywang.wxvehicle.exception.WxProfitSharingException;
-import com.github.binarywang.wxvehicle.service.WxProfitSharingService;
-import com.github.binarywang.wxvehicle.bean.result.WxProfitSharingResult;
-import com.github.binarywang.wxvehicle.bean.result.WxProfitSharingSandboxSignKeyResult;
-import com.github.binarywang.wxvehicle.config.WxProfitSharingConfig;
+import com.github.binarywang.profitsharing.bean.WxProfitSharingApiData;
+import com.github.binarywang.profitsharing.bean.request.*;
+import com.github.binarywang.profitsharing.bean.result.*;
+import com.github.binarywang.profitsharing.exception.WxProfitSharingException;
+import com.github.binarywang.profitsharing.service.WxProfitSharingService;
+import com.github.binarywang.profitsharing.config.WxProfitSharingConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,7 +38,7 @@ public abstract class BaseWxProfitSharingServiceImpl implements WxProfitSharingS
 
 
   @Override
-  public String getVehicleBaseUrl() {
+  public String getProfitSharingBaseUrl() {
     if (this.getConfig().useSandbox()) {
       return VEHICLE_BASE_URL + "/sandboxnew";
     }
@@ -77,13 +74,28 @@ public abstract class BaseWxProfitSharingServiceImpl implements WxProfitSharingS
   @Override
   public WxProfitSharingResult profitSharing(WxProfitSharingRequest wxProfitSharingRequest) throws WxProfitSharingException {
     wxProfitSharingRequest.checkAndSign(this.getConfig());
-    String url = this.getVehicleBaseUrl() + "/secapi/pay/wxvehicle";
+    String url = this.getProfitSharingBaseUrl() + "/secapi/pay/profitsharing";
     String responseContent = this.post(url, wxProfitSharingRequest.toXML(), true);
     WxProfitSharingResult wxProfitSharingResult = BaseWxProfitSharingResult.fromXML(responseContent, WxProfitSharingResult.class);
     return wxProfitSharingResult;
   }
 
+  @Override
+  public WxProfitSharingQueryResult query(WxProfitSharingQueryRequest wxProfitSharingQueryRequest) throws WxProfitSharingException {
+    return null;
+  }
 
+  @Override
+  public WxProfitSharingAddReceiverResult add(WxProfitSharingAddReceiverRequest wxProfitSharingAddReceiverRequest) throws WxProfitSharingException {
+    wxProfitSharingAddReceiverRequest.checkAndSign(this.getConfig());
+    String url = this.getProfitSharingBaseUrl() + "/pay/profitsharingaddreceiver";
+    String responseContent = this.post(url, wxProfitSharingAddReceiverRequest.toXML(), false);
+    WxProfitSharingAddReceiverResult wxProfitSharingAddReceiverResult = BaseWxProfitSharingResult.fromXML(responseContent, WxProfitSharingAddReceiverResult.class);
+    return wxProfitSharingAddReceiverResult;
+  }
 
-
+  @Override
+  public WxProfitSharingRemoveReceiverResult remove(WxProfitSharingRemoveReceiverRequest wxProfitSharingRemoveReceiverRequest) throws WxProfitSharingException {
+    return null;
+  }
 }

@@ -1,9 +1,9 @@
-package com.github.binarywang.wxvehicle.util;
+package com.github.binarywang.profitsharing.util;
 
 import com.google.common.base.Splitter;
 import org.testng.annotations.Test;
 
-import static com.github.binarywang.wxvehicle.constant.WxProfitSharingConstants.SignType.HMAC_SHA256;
+import static com.github.binarywang.profitsharing.constant.WxProfitSharingConstants.SignType.HMAC_SHA256;
 import static org.testng.Assert.assertEquals;
 
 /**

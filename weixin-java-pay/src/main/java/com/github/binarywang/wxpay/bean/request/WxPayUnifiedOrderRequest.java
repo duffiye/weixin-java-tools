@@ -332,6 +332,9 @@ public class WxPayUnifiedOrderRequest extends BaseWxPayRequest {
   @XStreamAlias("fingerprint")
   private String fingerprint;
 
+  @XStreamAlias("profit_sharing")
+  private String profitSharing;
+
   /**
    * 如果配置中已经设置，可以不设置值.
    *

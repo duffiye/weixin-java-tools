@@ -1,4 +1,4 @@
-package com.github.binarywang.wxvehicle.service.impl;
+package com.github.binarywang.profitsharing.service.impl;
 
 /**
  * <pre>
@@ -8,5 +8,5 @@ package com.github.binarywang.wxvehicle.service.impl;
  *
  * @author <a href="https://github.com/binarywang">Binary Wang</a>
  */
-public class WxProfitSharingServiceImpl extends com.github.binarywang.wxvehicle.service.impl.WxProfitSharingServiceApacheHttpImpl {
+public class WxProfitSharingServiceImpl extends WxProfitSharingServiceApacheHttpImpl {
 }

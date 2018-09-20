@@ -1,7 +1,7 @@
-package com.github.binarywang.wxvehicle.config;
+package com.github.binarywang.profitsharing.config;
 
-import com.github.binarywang.wxvehicle.constant.WxProfitSharingConstants;
-import com.github.binarywang.wxvehicle.exception.WxProfitSharingException;
+import com.github.binarywang.profitsharing.constant.WxProfitSharingConstants;
+import com.github.binarywang.profitsharing.exception.WxProfitSharingException;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.ssl.SSLContexts;

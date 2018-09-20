@@ -1,4 +1,18 @@
-package com.github.binarywang.wxvehicle.bean.result;
+package com.github.binarywang.profitsharing.bean.result;
 
-public class WxProfitSharingRemoveReceiverResult {
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+@Data
+@EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
+@XStreamAlias("xml")
+public class WxProfitSharingRemoveReceiverResult extends BaseWxProfitSharingResult {
+
+  @XStreamAlias("receiver")
+  private String receiver;
+
 }
+

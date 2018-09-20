@@ -102,7 +102,7 @@
     <module>weixin-java-open</module>
     <module>weixin-java-parking</module>
     <module>weixin-java-papay</module>
-    <!--<module>weixin-java-wxvehicle</module>-->
+    <module>weixin-java-profitsharing</module>
     <!--module>weixin-java-osgi</module-->
   </modules>
 

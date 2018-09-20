@@ -1,10 +1,16 @@
-package com.github.binarywang.wxvehicle.service;
+package com.github.binarywang.profitsharing.service;
 
-import com.github.binarywang.wxvehicle.bean.WxProfitSharingApiData;
-import com.github.binarywang.wxvehicle.bean.request.WxProfitSharingRequest;
-import com.github.binarywang.wxvehicle.exception.WxProfitSharingException;
-import com.github.binarywang.wxvehicle.bean.result.WxProfitSharingResult;
-import com.github.binarywang.wxvehicle.config.WxProfitSharingConfig;
+import com.github.binarywang.profitsharing.bean.WxProfitSharingApiData;
+import com.github.binarywang.profitsharing.bean.request.WxProfitSharingAddReceiverRequest;
+import com.github.binarywang.profitsharing.bean.request.WxProfitSharingQueryRequest;
+import com.github.binarywang.profitsharing.bean.request.WxProfitSharingRemoveReceiverRequest;
+import com.github.binarywang.profitsharing.bean.request.WxProfitSharingRequest;
+import com.github.binarywang.profitsharing.bean.result.WxProfitSharingAddReceiverResult;
+import com.github.binarywang.profitsharing.bean.result.WxProfitSharingQueryResult;
+import com.github.binarywang.profitsharing.bean.result.WxProfitSharingRemoveReceiverResult;
+import com.github.binarywang.profitsharing.exception.WxProfitSharingException;
+import com.github.binarywang.profitsharing.bean.result.WxProfitSharingResult;
+import com.github.binarywang.profitsharing.config.WxProfitSharingConfig;
 
 /**
  * <pre>
@@ -19,7 +25,7 @@ public interface WxProfitSharingService {
   /**
    * 获取微信支付请求url前缀，沙箱环境可能不一样.
    */
-  String getVehicleBaseUrl();
+  String getProfitSharingBaseUrl();
 
   /**
    * 发送post请求，得到响应字节数组.
@@ -75,5 +81,29 @@ public interface WxProfitSharingService {
    * @throws WxProfitSharingException
    */
   WxProfitSharingResult profitSharing(WxProfitSharingRequest wxProfitSharingRequest) throws WxProfitSharingException;
+
+  /**
+   * 微信分账-查询
+   * @param wxProfitSharingQueryRequest
+   * @return
+   * @throws WxProfitSharingException
+   */
+  WxProfitSharingQueryResult query(WxProfitSharingQueryRequest wxProfitSharingQueryRequest) throws WxProfitSharingException;
+
+  /**
+   * 微信分账-添加分账接受方
+   * @param wxProfitSharingAddReceiverRequest
+   * @return
+   * @throws WxProfitSharingException
+   */
+  WxProfitSharingAddReceiverResult add(WxProfitSharingAddReceiverRequest wxProfitSharingAddReceiverRequest) throws WxProfitSharingException;
+
+  /**
+   * 微信分账-删除微信分账方
+   * @param wxProfitSharingRemoveReceiverRequest
+   * @return
+   * @throws WxProfitSharingException
+   */
+  WxProfitSharingRemoveReceiverResult remove(WxProfitSharingRemoveReceiverRequest wxProfitSharingRemoveReceiverRequest) throws WxProfitSharingException;
 
 }

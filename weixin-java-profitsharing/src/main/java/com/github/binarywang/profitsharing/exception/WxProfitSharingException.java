@@ -1,6 +1,6 @@
-package com.github.binarywang.wxvehicle.exception;
+package com.github.binarywang.profitsharing.exception;
 
-import com.github.binarywang.wxvehicle.bean.result.BaseWxProfitSharingResult;
+import com.github.binarywang.profitsharing.bean.result.BaseWxProfitSharingResult;
 import com.google.common.base.Joiner;
 
 /**

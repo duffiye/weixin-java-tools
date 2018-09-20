@@ -1,4 +1,4 @@
-package com.github.binarywang.wxvehicle.bean.request;
+package com.github.binarywang.profitsharing.bean.request;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 

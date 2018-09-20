@@ -53,10 +53,12 @@ public class BaseWxPayServiceImplTest {
       .totalFee(1)
       .spbillCreateIp("11.1.11.1")
       .notifyUrl("111111")
-      .tradeType(TradeType.JSAPI)
-      .subOpenid("oVX7b4u7jgjX0TjOIftxK5blFF-4")
-      .openid(((XmlWxPayConfig) this.payService.getConfig()).getOpenid())
-      .outTradeNo("1111112")
+      .tradeType(TradeType.NATIVE)
+      .productId("t1")
+//      .subOpenid("oVX7b4u7jgjX0TjOIftxK5blFF-4")
+//      .openid(((XmlWxPayConfig) this.payService.getConfig()).getOpenid())
+      .outTradeNo(new Date().getTime() + "")
+      .profitSharing("Y")
       .build();
     request.setSignType(SignType.HMAC_SHA256);
     WxPayUnifiedOrderResult result = this.payService.unifiedOrder(request);

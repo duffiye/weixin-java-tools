@@ -1,6 +1,6 @@
-package com.github.binarywang.wxvehicle.bean.request;
+package com.github.binarywang.profitsharing.bean.request;
 
-import com.github.binarywang.wxvehicle.exception.WxProfitSharingException;
+import com.github.binarywang.profitsharing.exception.WxProfitSharingException;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import lombok.*;
 import me.chanjar.weixin.common.annotation.Required;

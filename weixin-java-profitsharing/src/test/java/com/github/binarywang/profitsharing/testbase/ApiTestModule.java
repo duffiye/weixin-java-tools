@@ -1,8 +1,8 @@
-package com.github.binarywang.wxvehicle.testbase;
+package com.github.binarywang.profitsharing.testbase;
 
-import com.github.binarywang.wxvehicle.config.WxProfitSharingConfig;
-import com.github.binarywang.wxvehicle.service.WxProfitSharingService;
-import com.github.binarywang.wxvehicle.service.impl.WxProfitSharingServiceImpl;
+import com.github.binarywang.profitsharing.config.WxProfitSharingConfig;
+import com.github.binarywang.profitsharing.service.WxProfitSharingService;
+import com.github.binarywang.profitsharing.service.impl.WxProfitSharingServiceImpl;
 import com.google.inject.Binder;
 import com.google.inject.Module;
 import com.thoughtworks.xstream.XStream;
