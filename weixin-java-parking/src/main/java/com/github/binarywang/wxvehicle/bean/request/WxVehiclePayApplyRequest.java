@@ -145,6 +145,16 @@ public class WxVehiclePayApplyRequest extends BaseWxVehicleRequest {
   @XStreamAlias("scene_info")
   private String sceneInfo;
 
+  /**
+   * <pre>
+   * 版本号
+   * version
+   * 固定值2.0
+   * </pre>
+   */
+  @XStreamAlias("version")
+  private String version;
+
   @Override
   protected void checkConstraints() throws WxVehicleException {
 
